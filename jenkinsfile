@@ -4,11 +4,13 @@ pipeline {
       MY_CREDENTIAL = credentials('test-hola-mundo')
     }
   stages {
-    stage('Primer paso') {
+
+    stage('Ejecución de Terraform init') {
       steps {
-        sh('echo ${MY_CREDENTIAL}')
+        sh('terraform init')
+        echo "Finalizada la ejecución de terraform init"
       }
     }
+
   }
 }
-
