@@ -37,5 +37,26 @@ pipeline {
         }
       }
     }
+
+    stage('Preparación de terraform') {
+      steps {
+        dir(workSpace) {
+          sh('terraform init')
+            echo "Finalizada la ejecución de terraform init"
+            sh('terraform plan')
+            echo "Finalizada la ejecución de terraform plan"
+        }
+      }
+    }
+
+    stage('Despliegue de infraestructura'){
+      steps{
+        dir(workSpace){
+          echo('Iniciando el despliegue de la infraestructura')
+          sh('terraform apply -auto-approve')
+          echo('Despliegue EXITOSO de la infraestructura!')
+        }
+      }
+    }
   }
 }
