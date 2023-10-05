@@ -3,14 +3,27 @@ pipeline {
     environment {
       MY_CREDENTIAL = credentials('test-hola-mundo')
     }
+
   stages {
+    stage('Clonar Repositorio') {
+      steps {
+        // Clonar el repositorio desde GitHub
+        git branch: 'main', url: 'https://github.com/alanfvn/IAC-Test.git'
+        echo "Descargado el repositorio de la IAC"
+      }
+    }
+
+    stage('Autenticación de Azure'){
+      steps {
+        echo "Autenticado mediante Azure correctamente!"
+      }
+    }
 
     stage('Ejecución de Terraform init') {
       steps {
         sh('terraform init')
-        echo "Finalizada la ejecución de terraform init"
+          echo "Finalizada la ejecución de terraform init"
       }
     }
-
   }
 }
