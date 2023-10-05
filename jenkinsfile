@@ -32,17 +32,6 @@ pipeline {
         dir(workSpace) {
           sh('terraform init')
             echo "Finalizada la ejecución de terraform init"
-            sh('terraform plan')
-            echo "Finalizada la ejecución de terraform plan"
-        }
-      }
-    }
-
-    stage('Preparación de terraform') {
-      steps {
-        dir(workSpace) {
-          sh('terraform init')
-            echo "Finalizada la ejecución de terraform init"
             sh('terraform plan -out')
             echo "Finalizada la ejecución de terraform plan"
         }
