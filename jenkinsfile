@@ -8,7 +8,7 @@ pipeline {
     stage('Clonar Repositorio') {
       steps {
         // Clonar el repositorio desde GitHub
-        git branch: 'main', url: 'https://github.com/alanfvn/IAC-Test.git'
+        git url: 'https://github.com/alanfvn/IAC-Test.git'
         echo "Descargado el repositorio de la IAC"
       }
     }
