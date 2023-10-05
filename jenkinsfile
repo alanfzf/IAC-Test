@@ -1,4 +1,4 @@
-def workSpace = '/home/shared/'
+def workSpace = '/home/shared/IAC/'
 
 pipeline {
   agent any
