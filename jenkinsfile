@@ -1,7 +1,10 @@
 pipeline {
   agent any
     environment {
-      MY_CREDENTIAL = credentials('test-hola-mundo')
+        AZURE_CLIENT_ID     = credentials('az-client-id')
+        AZURE_CLIENT_SECRET = credentials('az-client-secret')
+        AZURE_TENANT_ID     = credentials('az-tenant-id')
+        AZURE_SUBSCRIPTION  = 'Azure subscription 1'
     }
 
   stages {
@@ -9,12 +12,13 @@ pipeline {
       steps {
         // Clonar el repositorio desde GitHub
         git url: 'https://github.com/alanfvn/IAC-Test.git'
-        echo "Descargado el repositorio de la IAC"
+          echo "Descargado el repositorio de la IAC"
       }
     }
 
     stage('Autenticación de Azure'){
       steps {
+        sh 'az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET -t $AZURE_TENANT_ID'
         echo "Autenticado mediante Azure correctamente!"
       }
     }
