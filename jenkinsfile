@@ -43,7 +43,7 @@ pipeline {
         dir(workSpace) {
           sh('terraform init')
             echo "Finalizada la ejecución de terraform init"
-            sh('terraform plan')
+            sh('terraform plan -out')
             echo "Finalizada la ejecución de terraform plan"
         }
       }
