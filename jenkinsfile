@@ -6,10 +6,7 @@ pipeline {
   stages {
     stage('Primer paso') {
       steps {
-
-        script {
-          echo "La credencial es: ${MY_CREDENTIAL}"
-        }
+        sh('echo ${MY_CREDENTIAL}')
       }
     }
   }
